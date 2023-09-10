@@ -1,6 +1,6 @@
 package com.recruitment.task.userreposinfo.domain.service;
 
-import com.recruitment.task.userreposinfo.domain.dto.UserReposDetailsGithubDto;
+import com.recruitment.task.userreposinfo.domain.dto.UserReposRawDetailsDto;
 import com.recruitment.task.userreposinfo.domain.entity.UserAvatarUrl;
 import com.recruitment.task.userreposinfo.domain.entity.UserCreatedAt;
 import com.recruitment.task.userreposinfo.domain.entity.UserFollowers;
@@ -22,7 +22,7 @@ public class DefaultUserReposDetailsFactoryImpl implements UserReposDetailsFacto
     }
 
     @Override
-    public UserReposDetails createFromGithubDto(UserReposDetailsGithubDto githubDto) {
+    public UserReposDetails createFromRawDto(UserReposRawDetailsDto githubDto) {
         return new UserReposDetails(
                 new UserId(Long.parseLong(githubDto.id())),
                 new UserLogin(githubDto.login()),
