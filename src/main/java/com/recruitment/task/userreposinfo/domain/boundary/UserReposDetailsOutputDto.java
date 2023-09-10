@@ -1,4 +1,4 @@
-package com.recruitment.task.userreposinfo.domain.dto;
+package com.recruitment.task.userreposinfo.domain.boundary;
 
 public record UserReposDetailsOutputDto(
         String id,

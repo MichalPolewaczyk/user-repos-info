@@ -1,6 +1,6 @@
 package com.recruitment.task.userreposinfo.domain.service;
 
-import com.recruitment.task.userreposinfo.domain.dto.UserReposRawDetailsDto;
+import com.recruitment.task.userreposinfo.domain.boundary.UserReposRawDetailsDto;
 import com.recruitment.task.userreposinfo.domain.entity.UserAvatarUrl;
 import com.recruitment.task.userreposinfo.domain.entity.UserCreatedAt;
 import com.recruitment.task.userreposinfo.domain.entity.UserFollowers;
