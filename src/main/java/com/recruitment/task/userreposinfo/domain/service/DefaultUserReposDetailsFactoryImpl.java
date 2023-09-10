@@ -1,5 +1,6 @@
 package com.recruitment.task.userreposinfo.domain.service;
 
+import com.recruitment.task.userreposinfo.domain.dto.UserReposDetailsGithubDto;
 import com.recruitment.task.userreposinfo.domain.entity.UserAvatarUrl;
 import com.recruitment.task.userreposinfo.domain.entity.UserCreatedAt;
 import com.recruitment.task.userreposinfo.domain.entity.UserFollowers;
@@ -11,29 +12,26 @@ import com.recruitment.task.userreposinfo.domain.entity.UserReposDetails;
 import com.recruitment.task.userreposinfo.domain.entity.UserType;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class DefaultUserReposDetailsFactoryImpl implements UserReposDetailsFactory {
+    private final DateTimeFormatter formatter;
+
+    public DefaultUserReposDetailsFactoryImpl(DateTimeFormatter formatter) {
+        this.formatter = formatter;
+    }
 
     @Override
-    public UserReposDetails create(
-            long id,
-            String login,
-            String name,
-            String type,
-            String avatarUrl,
-            LocalDateTime createdAt,
-            int numberOfFollowers,
-            int numberOfPublicRepos
-    ) {
+    public UserReposDetails createFromGithubDto(UserReposDetailsGithubDto githubDto) {
         return new UserReposDetails(
-                new UserId(id),
-                new UserLogin(login),
-                new UserName(name),
-                new UserType(type),
-                new UserAvatarUrl(avatarUrl),
-                new UserCreatedAt(createdAt),
-                new UserFollowers(numberOfFollowers),
-                new UserPublicRepos(numberOfPublicRepos)
+                new UserId(Long.parseLong(githubDto.id())),
+                new UserLogin(githubDto.login()),
+                new UserName(githubDto.name()),
+                new UserType(githubDto.type()),
+                new UserAvatarUrl(githubDto.avatarUrl()),
+                new UserCreatedAt(LocalDateTime.parse(githubDto.createdAt(), formatter)),
+                new UserFollowers(Integer.parseInt(githubDto.numberOfFollowers())),
+                new UserPublicRepos(Integer.parseInt(githubDto.numberOfPublicRepos()))
         );
     }
 }
