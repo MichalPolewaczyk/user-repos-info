@@ -1,4 +1,4 @@
-package com.recruitment.task.userreposinfo.domain;
+package com.recruitment.task.userreposinfo.domain.entity;
 
 
 public class UserReposDetails {
