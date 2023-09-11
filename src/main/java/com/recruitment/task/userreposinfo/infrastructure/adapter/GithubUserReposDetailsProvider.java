@@ -2,8 +2,12 @@ package com.recruitment.task.userreposinfo.infrastructure.adapter;
 
 import com.recruitment.task.userreposinfo.domain.boundary.UserReposRawDetailsDto;
 import com.recruitment.task.userreposinfo.domain.port.UserReposDetailsProvider;
+import com.recruitment.task.userreposinfo.infrastructure.exception.UserReposDetailsProviderException;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
@@ -12,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 @Component
 @AllArgsConstructor
 public class GithubUserReposDetailsProvider implements UserReposDetailsProvider {
+    private final Logger logger = LoggerFactory.getLogger(GithubUserReposDetailsProvider.class);
     private static final String GITHUB_API_URL_TEMPLATE = "https://api.github.com/users/%s";
     private static final DateTimeFormatter githubResponseDateTimeFormatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
 
@@ -20,6 +25,15 @@ public class GithubUserReposDetailsProvider implements UserReposDetailsProvider 
 
     @Override
     public UserReposRawDetailsDto getDetailsOfUserWithGivenLogin(String login) {
+        try {
+            return tryToGetDetailsOfUserWithGivenLogin(login);
+        } catch (RestClientException exception) {
+            logger.debug("Exception occurred during call to external github service", exception);
+            throw new UserReposDetailsProviderException(exception);
+        }
+    }
+
+    private UserReposRawDetailsDto tryToGetDetailsOfUserWithGivenLogin(String login) {
         GithubResponseDto responseDto = restTemplate.getForObject(
                 getUrlBasedOnLogin(login),
                 GithubResponseDto.class
