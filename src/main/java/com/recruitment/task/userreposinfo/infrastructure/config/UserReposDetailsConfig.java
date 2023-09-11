@@ -1,6 +1,6 @@
 package com.recruitment.task.userreposinfo.infrastructure.config;
 
-import com.recruitment.task.userreposinfo.domain.entity.CalculationsStrategy;
+import com.recruitment.task.userreposinfo.domain.port.CalculationsStrategy;
 import com.recruitment.task.userreposinfo.domain.port.UserReposDetailsProvider;
 import com.recruitment.task.userreposinfo.domain.port.UserReposRepository;
 import com.recruitment.task.userreposinfo.domain.port.UserReposService;
@@ -26,12 +26,12 @@ public class UserReposDetailsConfig {
                 new DefaultUserReposDetailsFactoryImpl(),
                 calculationsStrategy,
                 reposRepository,
-                formatter()
+                outputDateFormatter()
         );
     }
 
     @Bean
-    public DateTimeFormatter formatter() {
+    public DateTimeFormatter outputDateFormatter() {
         return DateTimeFormatter.ISO_ORDINAL_DATE;
     }
 
