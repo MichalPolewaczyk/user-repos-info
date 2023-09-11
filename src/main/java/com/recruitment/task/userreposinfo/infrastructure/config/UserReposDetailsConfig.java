@@ -8,6 +8,7 @@ import com.recruitment.task.userreposinfo.domain.service.DefaultUserReposDetails
 import com.recruitment.task.userreposinfo.domain.service.UserReposApplicationService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.format.DateTimeFormatter;
 
@@ -22,7 +23,7 @@ public class UserReposDetailsConfig {
     ) {
         return new UserReposApplicationService(
                 detailsProvider,
-                new DefaultUserReposDetailsFactoryImpl(formatter()),
+                new DefaultUserReposDetailsFactoryImpl(),
                 calculationsStrategy,
                 reposRepository,
                 formatter()
@@ -31,6 +32,11 @@ public class UserReposDetailsConfig {
 
     @Bean
     public DateTimeFormatter formatter() {
-        return DateTimeFormatter.BASIC_ISO_DATE;
+        return DateTimeFormatter.ISO_ORDINAL_DATE;
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }

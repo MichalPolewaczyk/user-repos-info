@@ -11,15 +11,7 @@ import com.recruitment.task.userreposinfo.domain.entity.UserPublicRepos;
 import com.recruitment.task.userreposinfo.domain.entity.UserReposDetails;
 import com.recruitment.task.userreposinfo.domain.entity.UserType;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 public class DefaultUserReposDetailsFactoryImpl implements UserReposDetailsFactory {
-    private final DateTimeFormatter formatter;
-
-    public DefaultUserReposDetailsFactoryImpl(DateTimeFormatter formatter) {
-        this.formatter = formatter;
-    }
 
     @Override
     public UserReposDetails createFromRawDto(UserReposRawDetailsDto githubDto) {
@@ -29,9 +21,9 @@ public class DefaultUserReposDetailsFactoryImpl implements UserReposDetailsFacto
                 new UserName(githubDto.name()),
                 new UserType(githubDto.type()),
                 new UserAvatarUrl(githubDto.avatarUrl()),
-                new UserCreatedAt(LocalDateTime.parse(githubDto.createdAt(), formatter)),
-                new UserFollowers(Integer.parseInt(githubDto.numberOfFollowers())),
-                new UserPublicRepos(Integer.parseInt(githubDto.numberOfPublicRepos()))
+                new UserCreatedAt(githubDto.createdAt()),
+                new UserFollowers(githubDto.numberOfFollowers()),
+                new UserPublicRepos(githubDto.numberOfPublicRepos())
         );
     }
 }
