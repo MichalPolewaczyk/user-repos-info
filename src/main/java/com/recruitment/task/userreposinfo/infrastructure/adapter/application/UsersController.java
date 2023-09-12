@@ -19,6 +19,7 @@ public class UsersController {
     private static final String USERS_LOGIN_URL = "/users/{login}";
     private static final String PROVIDER_EXCEPTION_MESSAGE = "Error occurred while trying to fetch users data";
     private static final String CALCULATIONS_EXCEPTION_MESSAGE = "Calculations couldn't be performed on received users data";
+    private static final String UNEXPECTED_EXCEPTION_MESSAGE = "Unexpected error has occurred";
 
     private final UserReposFacade userReposFacade;
 
@@ -39,5 +40,11 @@ public class UsersController {
     @ExceptionHandler(NotAllowedCalculationsDataException.class)
     public UsersReposInfoErrorResponse handleNotAllowedCalculationsDataException() {
         return new UsersReposInfoErrorResponse(CALCULATIONS_EXCEPTION_MESSAGE);
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(RuntimeException.class)
+    public UsersReposInfoErrorResponse handleUnexpectedExceptions() {
+        return new UsersReposInfoErrorResponse(UNEXPECTED_EXCEPTION_MESSAGE);
     }
 }
