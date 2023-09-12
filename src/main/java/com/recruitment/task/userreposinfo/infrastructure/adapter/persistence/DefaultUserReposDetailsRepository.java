@@ -1,8 +1,8 @@
-package com.recruitment.task.userreposinfo.infrastructure.adapter;
+package com.recruitment.task.userreposinfo.infrastructure.adapter.persistence;
 
 import com.recruitment.task.userreposinfo.domain.port.UserReposRepository;
-import com.recruitment.task.userreposinfo.infrastructure.persistence.entity.LoginOnRequestCountEntity;
-import com.recruitment.task.userreposinfo.infrastructure.persistence.jpa_repositories.LoginOnRequestCountJpaRepository;
+import com.recruitment.task.userreposinfo.infrastructure.adapter.persistence.entity.LoginOnRequestCountEntity;
+import com.recruitment.task.userreposinfo.infrastructure.adapter.persistence.jpa_repositories.LoginOnRequestCountJpaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

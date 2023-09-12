@@ -1,8 +1,8 @@
-package com.recruitment.task.userreposinfo.infrastructure.adapter;
+package com.recruitment.task.userreposinfo.domain.service;
 
 import com.recruitment.task.userreposinfo.domain.boundary.CalculationsRequiredData;
 import com.recruitment.task.userreposinfo.domain.port.CalculationsStrategy;
-import com.recruitment.task.userreposinfo.infrastructure.exception.NotAllowedCalculationsDataException;
+import com.recruitment.task.userreposinfo.domain.exception.NotAllowedCalculationsDataException;
 import org.springframework.stereotype.Component;
 
 @Component

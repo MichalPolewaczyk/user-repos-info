@@ -6,18 +6,20 @@ import com.recruitment.task.userreposinfo.domain.port.CalculationsStrategy;
 import com.recruitment.task.userreposinfo.domain.entity.UserReposDetails;
 import com.recruitment.task.userreposinfo.domain.port.UserReposDetailsProvider;
 import com.recruitment.task.userreposinfo.domain.port.UserReposRepository;
-import com.recruitment.task.userreposinfo.domain.port.UserReposService;
+import com.recruitment.task.userreposinfo.domain.port.UserReposFacade;
 import lombok.AllArgsConstructor;
 
+import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 
 @AllArgsConstructor
-public class UserReposApplicationService implements UserReposService {
+public class UserReposFacadeImpl implements UserReposFacade {
     private final UserReposDetailsProvider userReposDetailsProvider;
     private final UserReposDetailsFactory userReposDetailsFactory;
     private final CalculationsStrategy calculationsStrategy;
     private final UserReposRepository userReposRepository;
-    private final DateTimeFormatter formatter;
+    private final DateTimeFormatter dateTimeFormatter;
+    private final DecimalFormat decimalFormatter;
 
     @Override
     public UserReposDetailsOutputDto getRepoDetailsOfUserWithGivenLogin(String login) {
@@ -54,8 +56,8 @@ public class UserReposApplicationService implements UserReposService {
                 userReposDetails.getName().name(),
                 userReposDetails.getType().type(),
                 userReposDetails.getAvatarUrl().avatarUrl(),
-                formatter.format(userReposDetails.getCreatedAt().createdAt()),
-                String.valueOf(resultOfCalculations)
+                dateTimeFormatter.format(userReposDetails.getCreatedAt().createdAt()),
+                decimalFormatter.format(resultOfCalculations)
         );
     }
 }

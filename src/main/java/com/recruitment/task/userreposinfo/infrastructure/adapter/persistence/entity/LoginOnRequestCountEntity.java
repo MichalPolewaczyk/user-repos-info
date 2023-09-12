@@ -1,4 +1,4 @@
-package com.recruitment.task.userreposinfo.infrastructure.persistence.entity;
+package com.recruitment.task.userreposinfo.infrastructure.adapter.persistence.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

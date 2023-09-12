@@ -1,8 +1,8 @@
-package com.recruitment.task.userreposinfo.infrastructure.adapter;
+package com.recruitment.task.userreposinfo.infrastructure.adapter.external;
 
 import com.recruitment.task.userreposinfo.domain.boundary.UserReposRawDetailsDto;
 import com.recruitment.task.userreposinfo.domain.port.UserReposDetailsProvider;
-import com.recruitment.task.userreposinfo.infrastructure.exception.UserReposDetailsProviderException;
+import com.recruitment.task.userreposinfo.domain.exception.UserReposDetailsProviderException;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

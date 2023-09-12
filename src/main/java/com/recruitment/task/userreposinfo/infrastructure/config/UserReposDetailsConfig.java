@@ -1,38 +1,43 @@
 package com.recruitment.task.userreposinfo.infrastructure.config;
 
-import com.recruitment.task.userreposinfo.domain.port.CalculationsStrategy;
 import com.recruitment.task.userreposinfo.domain.port.UserReposDetailsProvider;
 import com.recruitment.task.userreposinfo.domain.port.UserReposRepository;
-import com.recruitment.task.userreposinfo.domain.port.UserReposService;
+import com.recruitment.task.userreposinfo.domain.port.UserReposFacade;
 import com.recruitment.task.userreposinfo.domain.service.DefaultUserReposDetailsFactoryImpl;
-import com.recruitment.task.userreposinfo.domain.service.UserReposApplicationService;
+import com.recruitment.task.userreposinfo.domain.service.UserReposFacadeImpl;
+import com.recruitment.task.userreposinfo.domain.service.TaskCalculationsStrategy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 
 @Configuration
 public class UserReposDetailsConfig {
     @Bean
-    public UserReposService userReposService(
+    public UserReposFacade userReposService(
             UserReposDetailsProvider detailsProvider,
-            CalculationsStrategy calculationsStrategy,
             UserReposRepository reposRepository
-
     ) {
-        return new UserReposApplicationService(
+        return new UserReposFacadeImpl(
                 detailsProvider,
                 new DefaultUserReposDetailsFactoryImpl(),
-                calculationsStrategy,
+                new TaskCalculationsStrategy(),
                 reposRepository,
-                outputDateFormatter()
+                outputDateFormatter(),
+                decimalFormat()
         );
     }
 
     @Bean
     public DateTimeFormatter outputDateFormatter() {
         return DateTimeFormatter.ISO_ORDINAL_DATE;
+    }
+
+    @Bean
+    public DecimalFormat decimalFormat() {
+        return new DecimalFormat("#.####");
     }
 
     @Bean
