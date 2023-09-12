@@ -1,4 +1,4 @@
-package com.recruitment.task.userreposinfo.domain.port;
+package com.recruitment.task.userreposinfo.domain.service;
 
 import com.recruitment.task.userreposinfo.domain.boundary.CalculationsRequiredData;
 

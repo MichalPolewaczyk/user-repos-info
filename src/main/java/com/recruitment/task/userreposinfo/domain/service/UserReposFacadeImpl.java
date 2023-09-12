@@ -2,7 +2,6 @@ package com.recruitment.task.userreposinfo.domain.service;
 
 import com.recruitment.task.userreposinfo.domain.boundary.CalculationsRequiredData;
 import com.recruitment.task.userreposinfo.domain.boundary.UserReposDetailsOutputDto;
-import com.recruitment.task.userreposinfo.domain.port.CalculationsStrategy;
 import com.recruitment.task.userreposinfo.domain.entity.UserReposDetails;
 import com.recruitment.task.userreposinfo.domain.port.UserReposDetailsProvider;
 import com.recruitment.task.userreposinfo.domain.port.UserReposRepository;
