@@ -19,7 +19,7 @@ public class TaskCalculationsStrategy implements CalculationsStrategy {
     }
 
     private void throwIfProvidedSourceDataAreInvalid(CalculationsRequiredData requiredData) {
-        if(requiredData.numberOfPublicRepos() == 0 | requiredData.numberOfFollowers() == 0) {
+        if(requiredData.numberOfFollowers() == 0) {
             throw new NotAllowedCalculationsDataException();
         }
     }
