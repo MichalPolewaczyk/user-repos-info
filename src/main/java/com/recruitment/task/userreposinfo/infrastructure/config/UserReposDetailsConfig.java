@@ -32,7 +32,8 @@ public class UserReposDetailsConfig {
 
     @Bean
     public DateTimeFormatter outputDateFormatter() {
-        return DateTimeFormatter.ISO_ORDINAL_DATE;
+        final String outputDateTimeFormat = "dd/MM/yyyy hh:mm:ss";
+        return DateTimeFormatter.ofPattern(outputDateTimeFormat);
     }
 
     @Bean
